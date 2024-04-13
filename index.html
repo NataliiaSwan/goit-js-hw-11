@@ -6,21 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home work</title>
     
-    <script type="module" crossorigin src="/goit-js-hw-10/assets/styles-3c4e11fa.js"></script>
-    <link rel="stylesheet" href="/goit-js-hw-10/assets/styles-d3b5fc92.css">
+    <script type="module" crossorigin src="/goit-js-hw-10/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/vendor-0fc460d7.js">
+    <link rel="stylesheet" href="/goit-js-hw-10/assets/vendor-4b066c51.css">
+    <link rel="stylesheet" href="/goit-js-hw-10/assets/index-93fe0536.css">
   </head>
   <body>
-   <nav>
-    <ul>
-      <li>
-        <a href="./page-2.html">Gallery</a>
-      </li>
-      <li>
-        <a href="./page-3.html">Form</a>
-      </li>
-    </ul>
-   </nav>
-
+      
+    <div class="section">
+      <form class="search-form" id="search-form">
+        <input class="search-input" type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+    
+        <button class="form-btn" type="submit">Search images</button>
+      </form>
+    </div>
+    
+    <div class="gallery"></div>
+    <button type="button" class="load-more-btn is-hidden">Loading images, please wait......</button>
+<span class="loader is-hidden"></span>
     
   </body>
 </html>
+
