@@ -1,10 +1,10 @@
-import SimpleLightbox from "simplelightbox";
+import SimpleLightbox from 'simplelightbox';
 
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-import iziToast from "izitoast";
+import iziToast from 'izitoast';
 
-import "izitoast/dist/css/iziToast.min.css";
+import 'izitoast/dist/css/iziToast.min.css';
 
 import { createMarkup } from './js/render-functions';
 
@@ -14,38 +14,32 @@ const searchForm = document.querySelector('#search-form');
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 
-
-
 const gallerySimpleLightbox = new SimpleLightbox('.gallery a', {
-   captionsData: 'alt',
-   captionDelay: 250,
-  
+  captionsData: 'alt',
+  captionDelay: 250,
 });
 
 searchForm.addEventListener('submit', onSearch);
 // loadMoreBtn.addEventListener('click', onLoadMore);
 
- function onSearch(event) {
+function onSearch(event) {
   event.preventDefault();
-   gallery.innerHTML = '';
-   
-   
-   
-   const searchQuery = event.currentTarget.elements.searchQuery.value.trim();
-   if (!searchQuery) {
-     iziToast.show({
-          title: 'error',
-          titleColor: 'white',
-          message:
-            'Please, enter a word ',
-          messageColor: 'white',
-          color: 'red',
-          position: 'topCenter',
-          timeout: '2000',
-     });
-     return;
-   }
-   loader.classList.toggle('is-hidden')
+  gallery.innerHTML = '';
+  const searchQuery = event.currentTarget.elements.searchQuery.value.trim();
+  if (!searchQuery) {
+    iziToast.show({
+      title: 'error',
+      titleColor: 'white',
+      message: 'Please, enter a word ',
+      messageColor: 'white',
+      color: 'red',
+      position: 'topCenter',
+      timeout: '2000',
+    });
+    event.currentTarget.reset();
+    return;
+  }
+  loader.classList.toggle('is-hidden');
 
   doFetch(searchQuery)
     .then(data => {
@@ -61,30 +55,16 @@ searchForm.addEventListener('submit', onSearch);
           timeout: '2000',
         });
         return;
-      } 
-        gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
-         gallerySimpleLightbox.refresh();
-        event.currentTarget.reset();
-      
+      }
+      gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
+      gallerySimpleLightbox.refresh();
     })
     .catch(error => {
       iziToast.show({
         message: error.message,
-      })
+      });
     })
     .finally(() => {
       loader.classList.toggle('is-hidden');
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
