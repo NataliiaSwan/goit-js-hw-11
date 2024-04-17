@@ -1,5 +1,5 @@
 export function doFetch(query) {
-    const BASE_URL = 'https://pixabay.com/api/';
+  const BASE_URL = 'https://pixabay.com/api/';
   const API_KEY = '43290538-553335dd3499f06be9a5135a9';
   const params = new URLSearchParams({
     key: API_KEY,
